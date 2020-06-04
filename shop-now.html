@@ -162,15 +162,15 @@
             <div class="slideshow-container">
                 <!-- Full-width images with number and caption text -->
                 <div class="mySlides fade">
-                    <img src="https://ded8b07dd9e637888fc2-e87978aaae5cf97349d88697fd53e4c9.ssl.cf1.rackcdn.com/6b47ae8e-4cd9-44de-b32a-d0802c6e2c40.jpg"
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80.jpg"
                         style="width:100%">
                 </div>
                 <div class="mySlides fade">
-                    <img src="https://lh3.googleusercontent.com/proxy/AXdSd_ObBG1DOlY87R8BajuLKvpaxhtXdWUpl0hxHWy9gcI2FdOu4Sjrnr0-Gkc_iWvVh9-iQituJ6pVgBzPJujxfdTcPPagaZuJ2h4Ny_L_SB6QttT7yntxkxbHlTya7Mlviw5Zvw7plUzPR7eGA9MmoPFr"
+                    <img src="https://upvartanews.com/wp-content/uploads/2019/02/fruits-vegetables.jpg"
                         style="width:100%">
                 </div>
                 <div class="mySlides fade">
-                    <img src="https://cineverse.id/wp-content/uploads/2018/02/peter_rabbit_2018_5k-wide-001.jpg"
+                    <img src="https://images.squarespace-cdn.com/content/v1/5bf1f9754eddec4794def9ce/1558578839366-D2MCE1X7GBBG9ZQUNZNX/ke17ZwdGBToddI8pDm48kBZw6jF4_OvU-ddo_vwqGhp7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1Ub61YCrK70I7JIpWiI8ho4Yi1WvVNQtDE81xuRbL1MFKm0sD-Bab7E9MY8W31A7zMQ/IMG_20190329_170601_707.jpg"
                         style="width:100%">
                 </div>
                 <!-- Next and previous buttons -->
@@ -203,7 +203,8 @@
                     </div>
                 </div>
                 <div id="milk" class="product">
-                    <img src="https://www.morningagclips.com/wp-content/uploads/2018/09/milk-600x400.jpg" alt="Fruits" style="width:100%">
+                    <img src="https://www.morningagclips.com/wp-content/uploads/2018/09/milk-600x400.jpg" alt="Fruits"
+                        style="width:100%">
                     <div class="container">
                         <button>Milk</button>
                     </div>
@@ -218,8 +219,8 @@
             </div>
             <div class="flex-container">
                 <div id="eggs" class="product">
-                    <img src="https://mjskitchen.com/wp-content/uploads/2011/07/Fresh-Eggs-Web-600x400.jpg"
-                        alt="Fruits" style="width:100%">
+                    <img src="https://mjskitchen.com/wp-content/uploads/2011/07/Fresh-Eggs-Web-600x400.jpg" alt="Fruits"
+                        style="width:100%">
                     <div class="container">
                         <button>Eggs</button>
                     </div>
@@ -239,7 +240,8 @@
                     </div>
                 </div>
                 <div id="beef" class="product">
-                    <img src="https://0201.nccdn.net/1_2/000/000/135/694/page-img2-600x400.jpg" alt="Fruits" style="width:100%">
+                    <img src="https://0201.nccdn.net/1_2/000/000/135/694/page-img2-600x400.jpg" alt="Fruits"
+                        style="width:100%">
                     <div class="container">
                         <button>Beef</button>
                     </div>
@@ -280,20 +282,16 @@
             //script section for slide show
             var slideIndex = 0;
             showSlides();
+
             function showSlides() {
                 var i;
                 var slides = document.getElementsByClassName("mySlides");
-                var dots = document.getElementsByClassName("dot");
                 for (i = 0; i < slides.length; i++) {
                     slides[i].style.display = "none";
                 }
                 slideIndex++;
                 if (slideIndex > slides.length) { slideIndex = 1 }
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                }
                 slides[slideIndex - 1].style.display = "block";
-                dots[slideIndex - 1].className += "active";
                 setTimeout(showSlides, 2000); // Change image every 2 seconds
             }
         </script>
