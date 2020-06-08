@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Favorite farms</title>
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Market Search</h1>
+
+    <!-- This form will be where users input data about the farms -->
+    <form id="farm-form">
+      <label for="farm-input">Search for a market</label>
+      <input type="text" id="farm-input"><br>
+
+      <!-- This button will trigger our AJAX call -->
+      <input id="find-farm" type="submit" value="farm Search">
+    </form>
+
+    <!-- We'll be dumping our JSON contents in here -->
+    <div id="farm-view"></div>
+    <div id="find-view"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+    $(document).ready(function() {
+  getLocation()
+      var x=0;
+      var y=0;
+      function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+function showPosition(position) {
+
+  x=position.coords.latitude 
+  y=position.coords.longitude
+}
+      var array=[];
+      $("#find-farm").on("click", function(event) {
+        event.preventDefault();
+        console.log(x)
+        console.log(y)
+        
+      var query= "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/locSearch?lat=" + x + "&lng=" + y
+    $.ajax({
+      url:query,
+      method: "GET"
+    }).then(function(response){
+      var head =$("<h1> Places near You </h1>")
+      for(var i=0;i<10;i++){
+        console.log(response.results[i])
+        var list=$("<li id="+response.results[i].id+" >"+ JSON.stringify( response.results[i].marketname)+ "</li>")
+        array.push(response.results[i].id);
+        $("#farm-view").append(list);
+        
+    query= "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=" + response.results[i].id
+    $.ajax({
+      url:query,
+      method: "GET" 
+    }).then(function(response){
+
+var deats =response.marketdetails;
+console.log(deats);
+var pah=$("<p> hi"+JSON.stringify(response.marketdetails)+"</p>")
+$("#farm-view").append(pah);
+  });
+      }
+      $("#farm-view").prepend(head);
+    })   
+  });  
+})
+
+
+    </script>
+  </div>
+</body>
+
+</html>

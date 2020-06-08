@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Document</title>
 </head>
 <style>
@@ -185,6 +186,27 @@
                 <span class="dot" onclick="currentSlide(3)"></span>
             </div>
         </div>
+        <form id="food-form"><!-- creates search bar -->
+            <label for="food-input">Search for a food</label>
+            <input type="text" id="food-input"><br>
+        
+            <!-- This button will trigger our AJAX call -->
+            <input id="myBtn" type="submit" value="food Search">
+          </form>
+        
+          <!-- The Modal -->
+          <div id="myModal" class="modal">
+          
+            <!-- Modal content -->
+            <div class="modal-content"  style= "background-image: url(https://inspirationhut.net/wp-content/uploads/2013/05/201.png);">
+              <span class="close">&times;</span>
+              <!-- <h1>Nutrients</h1>
+              <p>Some text in the Modal..</p> -->
+            </div>
+          
+          </div>
+          <!-- We'll be dumping our JSON contents in here -->
+          <div id="food-view"></div>
         <!--Products boxes-->
         <section class="products">
             <div class="flex-container">
@@ -278,6 +300,73 @@
                 </div>
             </div>
         </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+    $("#myBtn").on("click", function(event) {
+      $( ".modal-content" ).empty();
+        
+        event.preventDefault();
+        var food = $("#food-input").val();
+        var queryURL="https://api.edamam.com/api/food-database/parser?ingr="+food+"&app_id=ab85a6dd&app_key=5b73a098bd2e513a83a50fabd9d08449"
+        $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      
+     var cal= response.hints[0].food.nutrients.ENERC_KCAL
+      var protien= response.hints[0].food.nutrients.PROCNT
+      var fat= response.hints[0].food.nutrients.FAT
+      var carbs= response.hints[0].food.nutrients.CHOCDF
+     var fiber= response.hints[0].food.nutrients.FIBTG
+     var nutr = $("<h1>"+food+" Nutrients </h1>");
+          var calList = $("<li> calories: "+cal+"</li>");
+          var fatList=$("<li> fat: "+fat+"</li>");
+          var protienList=$("<li> Protien: "+protien+"</li>");
+          var carbsList=$("<li> carbs: "+carbs+"</li>");
+          var fiberList=$("<li> fiber: "+protien+"</li>");
+          //$(".modal-content").text("hello")
+          $( ".modal-content" ).empty();
+      $(".modal-content").prepend(calList)
+      $(".modal-content").prepend(fatList);
+      $(".modal-content").prepend(protienList);
+      $(".modal-content").prepend(carbsList);
+      $(".modal-content").prepend(fiberList);
+      $(".modal-content").prepend(nutr);
+    });   
+     });
+     $("#myBtn").on("click", function(event) {
+      $( "#food-view" ).empty();  
+        event.preventDefault();
+
+        var food = $("#food-input").val();
+
+        var queryURL="https://api.unsplash.com/search/photos?query=" +food+"&client_id=qsdpQaDsnA60HzlVjZ3aO_wAm67P_OWyhCHB-8GXUGU"
+        $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(queryURL);
+       var pic =(response.results[0].urls.small)
+       console.log(pic)
+     var element = $("<img src= "+pic+">");
+ 
+      $(".modal-content").css("background-image", "url(" + pic+ ")"); 
+       $(".modal-content").css("font-weight", "bold"); 
+      
+
+
+    console.log(element)
+
+   // $("#food-view").prepend(element);
+   // $("#food-view").css("background-image", "url(" + pic + ")")
+    // var imageUrl = "images/sky.jpg";
+       // $(".box").css("background-image", "url(" + imageUrl + ")");
+    });
+   
+     });
+
+    </script>
         <script>
             //script section for slide show
             var slideIndex = 0;
@@ -295,6 +384,7 @@
                 setTimeout(showSlides, 2000); // Change image every 2 seconds
             }
         </script>
+        <script src="script.js"></script>
     </body>
 
 </html>
