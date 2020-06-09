@@ -133,54 +133,28 @@
 </style>
 <nav class="nav">
   <h3>Welcome to Favorite Farms</h3>
-    <!-- Collapse button -->
-    <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
-    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
-        class="fas fa-bars fa-1x"></i></span></button>
-
-  <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="navbarSupportedContent1">
-
-    <!-- Links -->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Shop-Now</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
-      </li>
-    </ul>
-    <!-- Links -->
-
-  </div>
-  <!-- Collapsible content -->
-  <a href="contact.html">Contact</a>
-  <a href="shop-now.html">Shop-Now</a>
   <a class="active" href="index.html">Home</a>
+  <a href="./contact_page/contact.html">Contact</a>
+  <a href="shop-now.html">Shop-Now</a>
 </nav>
 </div>
 
 <body>
-  <div class="container">
-    <h1>Market Search</h1>
 
-    <!-- This form will be where users input data about the farms -->
-    <form id="farm-form" class="farm-form">
-      <label for="farm-input">Search for a market near you</label>
-      <input type="text" id="farm-input" class="farm-input"><br>
 
-      <!-- This button will trigger our AJAX call -->
-      <input id="find-farm" class="find-farmBtn" type="submit" value="Farm Search">
-    </form>
+ 
 
-    <!-- We'll be dumping our JSON contents in here -->
-    <div id="find-view" class="place-list"></div>
-    <div id="farm-view" class="flex-container"></div>
+    <div class="container">
+      <h1>Farm Search</h1>
+      <form id="farm-form">
+        <label for="movie-input">Search for a farm</label>
+        <input type="text" id="farm-input"><br>
 
-    <!--Scripts starrts from here-->
+        <input id="find-farm" type="submit" value="farm Search">
+      </form>
+ 
+      <div id="farm-view"></div>
+      <div id="farm-view"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
 
@@ -202,37 +176,54 @@
         }
         var array = [];
         $("#find-farm").on("click", function (event) {
+          $( "#farm-view" ).empty();  
           event.preventDefault();
           console.log(x)
           console.log(y)
-
-          var query = "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/locSearch?lat=" + x + "&lng=" + y
+          var query = "https://cors-anywhere.herokuapp.com/http://search.ams.usda.gov/farmersmarkets/v1/data.svc/locSearch?lat=" + x + "&lng=" + y
           $.ajax({
             url: query,
             method: "GET"
           }).then(function (response) {
-            var head = $("<h1> Places near You </h1><hr>")
+            var head = $("<h1> Places near You </h1>")
             for (var i = 0; i < 10; i++) {
               console.log(response.results[i])
-              var list = $("<li id=" + response.results[i].id + " >" + JSON.stringify(response.results[i].marketname) + "</li>")
+              var list = $("<p id=" + response.results[i].id + ">" + JSON.stringify(response.results[i].marketname) + "</p>")
               array.push(response.results[i].id);
-              $("#find-view").append(list);
-
-              query = "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=" + response.results[i].id
-              $.ajax({
-                url: query,
-                method: "GET"
-              }).then(function (response) {
-
-                var deats = response.marketdetails;
-                console.log(deats);
-                var pah = $("<p> " + JSON.stringify(response.marketdetails) + "</p><hr>")
-                $("#farm-view").append(pah);
-              });
+              var places = add(response.results[i].id)
+              $("#farm-view").append(list);
             }
             $("#farm-view").prepend(head);
-          })
+
+            console.log(array)
+            console.log(query)
+          })   
+          function add(add) {
+            query = "https://cors-anywhere.herokuapp.com/http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=" + add
+                var info=add;
+            $.ajax({
+              url: query,
+              method: "GET"
+
+            }).then(function (response) {
+              
+              var deats = response.marketdetails;
+               info = JSON.stringify(deats);
+              console.log("hi" + JSON.stringify(deats));
+              var pah = $("<li>" + JSON.stringify(response.marketdetails.Address) + "</li>")
+              var pas = $("<li>" + JSON.stringify(response.marketdetails.Products) + "</li>")
+              var paz = $("<li>" + JSON.stringify(response.marketdetails.GoogleLink) + "</li>")
+              $("#"+add).append(pah);
+              $("#"+add).append(pas);
+              $("#"+add).append(paz);
+
+            
+            });
+           
+          }
         });
+        
+
       })
 
 
