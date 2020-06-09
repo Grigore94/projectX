@@ -13,6 +13,7 @@
     * {
         box-sizing: border-box
     }
+
     /* Slideshow container */
     .slideshow-container {
         max-width: 1000px;
@@ -105,7 +106,7 @@
     }
 
     /*Search Form Start!!*/
-    #search {
+    #food-input {
         float: left;
         display: block;
         text-align: left;
@@ -118,7 +119,7 @@
         font-size: 17px;
     }
 
-    form.form-box button {
+    #myBtn {
         margin: 0;
         padding: 14px;
         padding: 6px;
@@ -182,13 +183,14 @@
 </style>
 <nav class="nav">
     <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="#shop-now">Shop-Now</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
-        <form class="form-box">
-            <input id="search" type="text" placeholder="Search..">
-            <button type="submit">Submit</button>
+        <a class="active" href="index.html">Home</a>
+        <a href="shop-now.html">Shop-Now</a>
+        <a href="contact.htm">Contact</a>
+        <form id="food-form" class="search">
+            <!-- Creates search bar -->
+            <input id="food-input" type="text" placeholder="Search..">
+            <!-- This button will trigger our AJAX call -->
+            <button id="myBtn" type="submit" value="food Search">Submit</button>
         </form>
     </div>
 </nav>
@@ -212,220 +214,210 @@
                     <img src="https://images.squarespace-cdn.com/content/v1/5bf1f9754eddec4794def9ce/1558578839366-D2MCE1X7GBBG9ZQUNZNX/ke17ZwdGBToddI8pDm48kBZw6jF4_OvU-ddo_vwqGhp7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1Ub61YCrK70I7JIpWiI8ho4Yi1WvVNQtDE81xuRbL1MFKm0sD-Bab7E9MY8W31A7zMQ/IMG_20190329_170601_707.jpg"
                         style="width:100%">
                 </div>
+            </div>
+        </div>
 
-                <br>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
 
+            <!-- Modal content -->
+            <div class="modal-content"
+                style="background-image: url(https://inspirationhut.net/wp-content/uploads/2013/05/201.png);">
+                <span class="close">&times;</span>
+                <!-- <h1>Nutrients</h1>
+              <p>Some text in the Modal..</p> -->
             </div>
 
         </div>
-        <form id="food-form"><!-- creates search bar -->
-            <label for="food-input">Search for a food</label>
-            <input type="text" id="food-input"><br>
-        
-            <!-- This button will trigger our AJAX call -->
-            <input id="myBtn" type="submit" value="food Search">
-          </form>
-        
-          <!-- The Modal -->
-          <div id="myModal" class="modal">
-          
-            <!-- Modal content -->
-            <div class="modal-content"  style= "background-image: url(https://inspirationhut.net/wp-content/uploads/2013/05/201.png);">
-              <span class="close">&times;</span>
-              <!-- <h1>Nutrients</h1>
-              <p>Some text in the Modal..</p> -->
-            </div>
-          
-          </div>
-          <!-- We'll be dumping our JSON contents in here -->
-          <div id="food-view"></div>
-        
+        <!-- We'll be dumping our JSON contents in here -->
+        <div id="food-view"></div>
 
-            <!--Products boxes-->
-            <section class="products">
-                <div class="flex-container">
-                    <div id="fruits" class="product">
-                        <img src="https://i.hurimg.com/i/hdn/75/600x400/5ced1f8b2269a222dce9a23c.jpg" alt="Fruits"
-                            style="width:100%">
-                        <div class="container">
-                            <button>Fruits</button>
-                        </div>
-                    </div>
-                    <div id="vegetables" class="product">
-                        <img src="https://www.lifestorage.com/blog/wp-content/uploads/2016/06/best-way-to-store-vegetables-600x400.jpg"
-                            alt="vegetables" style="width:100%">
-                        <div class="container">
-                            <button>Vegetables</button>
-                        </div>
-                    </div>
-                    <div id="milk" class="product">
-                        <img src="https://www.morningagclips.com/wp-content/uploads/2018/09/milk-600x400.jpg" alt="Milk"
-                            style="width:100%">
-                        <div class="container">
-                            <button>Milk</button>
-                        </div>
-                    </div>
-                    <div id="coffe" class="product">
-                        <img src="https://cdn.business2community.com/wp-content/uploads/2020/02/coffee_bean_1581301360-600x400.jpg"
-                            alt="Coffe" style="width:100%">
-                        <div class="container">
-                            <button>Coffe</button>
-                        </div>
+
+        <!--Products boxes-->
+        <section class="products">
+            <div class="flex-container">
+                <div id="fruits" class="product">
+                    <img src="https://i.hurimg.com/i/hdn/75/600x400/5ced1f8b2269a222dce9a23c.jpg" alt="Fruits"
+                        style="width:100%">
+                    <div class="container">
+                        <button>Fruits</button>
                     </div>
                 </div>
-                <div class="flex-container">
-                    <div id="eggs" class="product">
-                        <img src="https://mjskitchen.com/wp-content/uploads/2011/07/Fresh-Eggs-Web-600x400.jpg"
-                            alt="Eggs" style="width:100%">
-                        <div class="container">
-                            <button>Eggs</button>
-                        </div>
-                    </div>
-                    <div id="cereal" class="product">
-                        <img src="https://149363012.v2.pressablecdn.com/wp-content/uploads/2020/02/cereals-600x400.jpg"
-                            alt="cereals" style="width:100%">
-                        <div class="container">
-                            <button>Cereal</button>
-                        </div>
-                    </div>
-                    <div id="yogurt" class="product">
-                        <img src="https://www.melskitchencafe.com/wp-content/uploads/yogurt-fruit-salad5-600x400.jpg"
-                            alt="yogurt" style="width:100%">
-                        <div class="container">
-                            <button>Yogurt</button>
-                        </div>
-                    </div>
-                    <div id="beef" class="product">
-                        <img src="https://0201.nccdn.net/1_2/000/000/135/694/page-img2-600x400.jpg" alt="beff"
-                            style="width:100%">
-                        <div class="container">
-                            <button>Beef</button>
-                        </div>
+                <div id="vegetables" class="product">
+                    <img src="https://www.lifestorage.com/blog/wp-content/uploads/2016/06/best-way-to-store-vegetables-600x400.jpg"
+                        alt="vegetables" style="width:100%">
+                    <div class="container">
+                        <button>Vegetables</button>
                     </div>
                 </div>
-                <div class="flex-container">
-                    <div id="pork" class="product">
-                        <img src="https://www.simplyrecipes.com/wp-content/uploads/2013/09/prep-pork-chop-salt-600x400.jpg"
-                            alt="Pork" style="width:100%">
-                        <div class="container">
-                            <button>Pork</button>
-                        </div>
-                    </div>
-                    <div id="cheese" class="product">
-                        <img src="https://www.dairyindustries.com/wp-content/uploads/wooden-tray-with-several-slices-medium-hard-swiss-cheese-with-olives-green_23-2148166537-600x400.jpg"
-                            alt="Cheese" style="width:100%">
-                        <div class="container">
-                            <button>Cheese</button>
-                        </div>
-                    </div>
-                    <div id="bread" class="product">
-                        <img src="https://d104wv11b7o3gc.cloudfront.net/wp-content/uploads/2015/05/low-carb-keto-psyllium-flax-bread-3-600x400.jpg"
-                            alt="Bread" style="width:100%">
-                        <div class="container">
-                            <button>Bread</button>
-                        </div>
-                    </div>
-                    <div id="poultry" class="product">
-                        <img src="https://chicken.org.au/wp-content/uploads/2018/03/Ingham-Produce-21-8-06-014905-Half-Chicken-15-600x400.jpg"
-                            alt="Poultry" style="width:100%">
-                        <div class="container">
-                            <button>Poultry</button>
-                        </div>
+                <div id="milk" class="product">
+                    <img src="https://www.morningagclips.com/wp-content/uploads/2018/09/milk-600x400.jpg" alt="Milk"
+                        style="width:100%">
+                    <div class="container">
+                        <button>Milk</button>
                     </div>
                 </div>
+                <div id="coffe" class="product">
+                    <img src="https://cdn.business2community.com/wp-content/uploads/2020/02/coffee_bean_1581301360-600x400.jpg"
+                        alt="Coffe" style="width:100%">
+                    <div class="container">
+                        <button>Coffe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-container">
+                <div id="eggs" class="product">
+                    <img src="https://mjskitchen.com/wp-content/uploads/2011/07/Fresh-Eggs-Web-600x400.jpg" alt="Eggs"
+                        style="width:100%">
+                    <div class="container">
+                        <button>Eggs</button>
+                    </div>
+                </div>
+                <div id="cereal" class="product">
+                    <img src="https://149363012.v2.pressablecdn.com/wp-content/uploads/2020/02/cereals-600x400.jpg"
+                        alt="cereals" style="width:100%">
+                    <div class="container">
+                        <button>Cereal</button>
+                    </div>
+                </div>
+                <div id="yogurt" class="product">
+                    <img src="https://www.melskitchencafe.com/wp-content/uploads/yogurt-fruit-salad5-600x400.jpg"
+                        alt="yogurt" style="width:100%">
+                    <div class="container">
+                        <button>Yogurt</button>
+                    </div>
+                </div>
+                <div id="beef" class="product">
+                    <img src="https://0201.nccdn.net/1_2/000/000/135/694/page-img2-600x400.jpg" alt="beff"
+                        style="width:100%">
+                    <div class="container">
+                        <button>Beef</button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-container">
+                <div id="pork" class="product">
+                    <img src="https://www.simplyrecipes.com/wp-content/uploads/2013/09/prep-pork-chop-salt-600x400.jpg"
+                        alt="Pork" style="width:100%">
+                    <div class="container">
+                        <button>Pork</button>
+                    </div>
+                </div>
+                <div id="cheese" class="product">
+                    <img src="https://www.dairyindustries.com/wp-content/uploads/wooden-tray-with-several-slices-medium-hard-swiss-cheese-with-olives-green_23-2148166537-600x400.jpg"
+                        alt="Cheese" style="width:100%">
+                    <div class="container">
+                        <button>Cheese</button>
+                    </div>
+                </div>
+                <div id="bread" class="product">
+                    <img src="https://d104wv11b7o3gc.cloudfront.net/wp-content/uploads/2015/05/low-carb-keto-psyllium-flax-bread-3-600x400.jpg"
+                        alt="Bread" style="width:100%">
+                    <div class="container">
+                        <button>Bread</button>
+                    </div>
+                </div>
+                <div id="poultry" class="product">
+                    <img src="https://chicken.org.au/wp-content/uploads/2018/03/Ingham-Produce-21-8-06-014905-Half-Chicken-15-600x400.jpg"
+                        alt="Poultry" style="width:100%">
+                    <div class="container">
+                        <button>Poultry</button>
+                    </div>
+                </div>
+            </div>
 
             </div>
         </section>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    
-    $("#myBtn").on("click", function(event) {
-      $( ".modal-content" ).empty();
-        
-        event.preventDefault();
-        var food = $("#food-input").val();
-        var queryURL="https://api.edamam.com/api/food-database/parser?ingr="+food+"&app_id=ab85a6dd&app_key=5b73a098bd2e513a83a50fabd9d08449"
-        $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-      
-     var cal= response.hints[0].food.nutrients.ENERC_KCAL
-      var protien= response.hints[0].food.nutrients.PROCNT
-      var fat= response.hints[0].food.nutrients.FAT
-      var carbs= response.hints[0].food.nutrients.CHOCDF
-     var fiber= response.hints[0].food.nutrients.FIBTG
-     var nutr = $("<h1>"+food+" Nutrients </h1>");
-          var calList = $("<li> calories: "+cal+"</li>");
-          var fatList=$("<li> fat: "+fat+"</li>");
-          var protienList=$("<li> Protien: "+protien+"</li>");
-          var carbsList=$("<li> carbs: "+carbs+"</li>");
-          var fiberList=$("<li> fiber: "+protien+"</li>");
-          //$(".modal-content").text("hello")
-          $( ".modal-content" ).empty();
-      $(".modal-content").prepend(calList)
-      $(".modal-content").prepend(fatList);
-      $(".modal-content").prepend(protienList);
-      $(".modal-content").prepend(carbsList);
-      $(".modal-content").prepend(fiberList);
-      $(".modal-content").prepend(nutr);
-    });   
-     });
-     $("#myBtn").on("click", function(event) {
-      $( "#food-view" ).empty();  
-        event.preventDefault();
+        <script type="text/javascript">
 
-        var food = $("#food-input").val();
+            $("#myBtn").on("click", function (event) {
+                $(".modal-content").empty();
 
-        var queryURL="https://api.unsplash.com/search/photos?query=" +food+"&client_id=qsdpQaDsnA60HzlVjZ3aO_wAm67P_OWyhCHB-8GXUGU"
-        $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-      console.log(queryURL);
-       var pic =(response.results[0].urls.small)
-       console.log(pic)
-     var element = $("<img src= "+pic+">");
- 
-      $(".modal-content").css("background-image", "url(" + pic+ ")"); 
-       $(".modal-content").css("font-weight", "bold"); 
-      
+                event.preventDefault();
+                var food = $("#food-input").val();
+                var queryURL = "https://api.edamam.com/api/food-database/parser?ingr=" + food + "&app_id=ab85a6dd&app_key=5b73a098bd2e513a83a50fabd9d08449"
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
 
+                    var cal = response.hints[0].food.nutrients.ENERC_KCAL
+                    var protien = response.hints[0].food.nutrients.PROCNT
+                    var fat = response.hints[0].food.nutrients.FAT
+                    var carbs = response.hints[0].food.nutrients.CHOCDF
+                    var fiber = response.hints[0].food.nutrients.FIBTG
+                    var nutr = $("<h1>" + food + " Nutrients </h1>");
+                    var calList = $("<li> calories: " + cal + "</li>");
+                    var fatList = $("<li> fat: " + fat + "</li>");
+                    var protienList = $("<li> Protien: " + protien + "</li>");
+                    var carbsList = $("<li> carbs: " + carbs + "</li>");
+                    var fiberList = $("<li> fiber: " + protien + "</li>");
+                    //$(".modal-content").text("hello")
+                    $(".modal-content").empty();
+                    $(".modal-content").prepend(calList)
+                    $(".modal-content").prepend(fatList);
+                    $(".modal-content").prepend(protienList);
+                    $(".modal-content").prepend(carbsList);
+                    $(".modal-content").prepend(fiberList);
+                    $(".modal-content").prepend(nutr);
+                });
+            });
+            $("#myBtn").on("click", function (event) {
+                $("#food-view").empty();
+                event.preventDefault();
 
-    console.log(element)
+                var food = $("#food-input").val();
 
-   // $("#food-view").prepend(element);
-   // $("#food-view").css("background-image", "url(" + pic + ")")
-    // var imageUrl = "images/sky.jpg";
-       // $(".box").css("background-image", "url(" + imageUrl + ")");
-    });
-   
-     });
+                var queryURL = "https://api.unsplash.com/search/photos?query=" + food + "&client_id=qsdpQaDsnA60HzlVjZ3aO_wAm67P_OWyhCHB-8GXUGU"
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+                    console.log(queryURL);
+                    var pic = (response.results[0].urls.small)
+                    console.log(pic)
+                    var element = $("<img src= " + pic + ">");
 
-    </script>
-       
-            <script>
-                //script section for slide show
-                var slideIndex = 0;
-                showSlides();
+                    $(".modal-content").css("background-image", "url(" + pic + ")");
+                    $(".modal-content").css("font-weight", "bold");
 
 
-                function showSlides() {
-                    var i;
-                    var slides = document.getElementsByClassName("mySlides");
-                    for (i = 0; i < slides.length; i++) {
-                        slides[i].style.display = "none";
-                    }
-                    slideIndex++;
-                    if (slideIndex > slides.length) { slideIndex = 1 }
-                    slides[slideIndex - 1].style.display = "block";
-                    setTimeout(showSlides, 2000); // Change image every 2 seconds
+
+                    console.log(element)
+
+                    // $("#food-view").prepend(element);
+                    // $("#food-view").css("background-image", "url(" + pic + ")")
+                    // var imageUrl = "images/sky.jpg";
+                    // $(".box").css("background-image", "url(" + imageUrl + ")");
+                });
+
+            });
+
+        </script>
+
+        <script>
+            //script section for slide show
+            var slideIndex = 0;
+            showSlides();
+
+
+            function showSlides() {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
                 }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1 }
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, 2000); // Change image every 2 seconds
+            }
 
         </script>
         <script src="script.js"></script>
 
-            </script>
+        </script>
 
     </body>
     <hr>
